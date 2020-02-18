@@ -4,17 +4,19 @@ const StockForm = props => {
   const { state, handleSubmit, handleChange } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="ticker-symbol">Ticker Symbol</label>
+      <label htmlFor="ticker">Ticker Symbol</label>
       <input
         type="text"
-        name="ticker-symbol"
+        name="ticker"
+        maxLength="5"
         onChange={handleChange}
         value={state.ticker}
       />
 
       <label htmlFor="quantity">Quantity</label>
       <input
-        type="text"
+        type="number"
+        min="0"
         name="quantity"
         onChange={handleChange}
         value={state.quantity}

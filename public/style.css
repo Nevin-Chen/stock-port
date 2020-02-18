@@ -5,3 +5,7 @@ h1 {
 a {
     color: rgb(145, 188, 228)
 }
+
+.home-page-container {
+  margin-top: 150px;
+}

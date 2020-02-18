@@ -28,8 +28,9 @@ class UserPortfolio extends Component {
   render() {
     return (
       <div>
-        <h1>Stock Portfolio</h1>
+        <h2>Portfolio (Total Value)</h2>
         <hr />
+        <h2>Cash - $(Amount)</h2>
         <StockForm
           state={this.state}
           handleSubmit={this.handleSubmit}
