@@ -5,9 +5,6 @@ import PropTypes from "prop-types";
 import { Login, Signup, UserHome, StockTicker } from "./components";
 import { me } from "./store";
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
@@ -25,7 +22,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
-        {/* <Route component={Login} /> */}
+        <Route component={StockTicker} />
       </Switch>
     );
   }
