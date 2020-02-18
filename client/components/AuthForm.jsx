@@ -4,11 +4,18 @@ import PropTypes from "prop-types";
 import { auth } from "../store";
 
 const LoginForm = props => {
-  const { name, displayName, handleSubmit, error } = props;
-
+  const { formName, displayName, handleSubmit, error } = props;
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} name={formName}>
+        {displayName === "Sign Up" && (
+          <div>
+            <label htmlFor="username">
+              <small>Username</small>
+            </label>
+            <input name="username" type="text" />
+          </div>
+        )}
         <div>
           <label htmlFor="email">
             <small>Email</small>
@@ -33,7 +40,7 @@ const LoginForm = props => {
 
 const mapLogin = state => {
   return {
-    name: "login",
+    formName: "login",
     displayName: "Login",
     error: state.user.error
   };
@@ -41,7 +48,7 @@ const mapLogin = state => {
 
 const mapSignup = state => {
   return {
-    name: "signup",
+    formName: "signup",
     displayName: "Sign Up",
     error: state.user.error
   };
@@ -51,10 +58,11 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();
+      const userName = evt.target.username.value;
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(email, password, formName));
+      dispatch(auth(userName, email, password, formName));
     }
   };
 };
@@ -63,7 +71,7 @@ export const Login = connect(mapLogin, mapDispatch)(LoginForm);
 export const Signup = connect(mapSignup, mapDispatch)(LoginForm);
 
 LoginForm.propTypes = {
-  name: PropTypes.string.isRequired,
+  formName: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
