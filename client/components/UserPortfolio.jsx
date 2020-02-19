@@ -36,7 +36,8 @@ class UserPortfolio extends Component {
     if (this.props.portfolio.stocks.length) {
       let totalValue = 0;
       for (let i = 0; i < this.props.portfolio.stocks.length; i++) {
-        totalValue += this.props.portfolio.stocks[i].price;
+        const { price, quantity } = this.props.portfolio.stocks[i];
+        totalValue += price * quantity;
       }
       return (
         <div className="ui vertical stripe quote segment">

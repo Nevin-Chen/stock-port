@@ -28,7 +28,7 @@ const StockForm = props => {
         </div>
 
         <button
-          className="ui fluid small blue submit button"
+          className="ui fluid large blue submit button"
           type="submit"
           onClick={() => {
             purchase(state.ticker, state.quantity);

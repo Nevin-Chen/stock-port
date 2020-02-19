@@ -1,17 +1,16 @@
 const router = require("express").Router();
-const stocksAPI = require("../db/models/iexAPI");
+const { CalculateStock, Sleep } = require("../util");
+const stocks = require("../db/models/iexAPI");
 const { Transaction, User } = require("../db/models");
 
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const stocks = await Transaction.findAll({
-      where: { userId: req.session.passport.user }
-    });
-    res.json(stocks);
+    const portfolioView = await CalculateStock(req.session.passport.user)
+    res.json(portfolioView);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -25,7 +24,7 @@ router.post("/purchase", async (req, res, next) => {
     if (quantity <= 0) {
       res.status(401).send("Invalid input");
     } else {
-      const quote = await stocksAPI.purchaseStock(tickerSymbol);
+      const quote = await stocks.purchaseStock(tickerSymbol);
       if (quote === undefined) {
         res.status(401).send("Invalid symbol");
       } else {
@@ -48,6 +47,9 @@ router.post("/purchase", async (req, res, next) => {
           const newBalance = Number(currentUser.balance - total);
           currentUser.balance = newBalance;
           await currentUser.save();
+          
+          await Sleep(500)
+          
           res.json(addStockToPortolio);
         }
       }
