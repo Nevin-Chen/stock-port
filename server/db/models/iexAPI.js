@@ -1,18 +1,17 @@
-const fetch = require("node-fetch");
+const iex = require("iexcloud_api_wrapper");
 require("dotenv").config();
 
 class StocksAPI {
-    async purchaseStock() {
-        try {
-            const stockQuote = await fetch(`https://cloud.iexapis.com/stable/stock/XOM/quote?token=${process.env.IEX_API_KEY}`)
-            return stockQuote
-        } catch (error) {
-            console.error(error)
-        }
+  async purchaseStock(sym) {
+    try {
+      const quoteData = await iex.quote("XOM");
+      return quoteData;
+    } catch (error) {
+      console.error(error);
     }
+  }
 }
-  
+
 let stocks = new StocksAPI();
-  
+
 module.exports = stocks;
-  

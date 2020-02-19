@@ -24,7 +24,10 @@ const StockForm = props => {
 
       <button
         type="submit"
-        onClick={() => purchase(state.ticker, state.quantity)}
+        onClick={() => {
+          purchase(state.ticker, state.quantity)
+          console.log(state)
+        }}
         disabled={!state.ticker || !state.quantity}
       >
         Buy
