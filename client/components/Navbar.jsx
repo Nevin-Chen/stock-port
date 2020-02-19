@@ -15,6 +15,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <div className="ui container">
         {isLoggedIn ? (
           <div className="right item">
+            <Link to="/transactions">
+              <span className="ui blue inverted button">Transactions</span>
+            </Link>
             <Link to="#" onClick={handleClick}>
               <span className="ui blue inverted button">Logout</span>
             </Link>

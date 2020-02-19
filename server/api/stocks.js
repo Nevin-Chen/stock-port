@@ -4,6 +4,17 @@ const { Transaction, User } = require("../db/models");
 
 module.exports = router;
 
+router.get("/", async (req, res, next) => {
+  try {
+    const stocks = await Transaction.findAll({
+      where: { userId: req.session.passport.user }
+    });
+    res.json(stocks);
+  } catch (error) {
+    next(err);
+  }
+});
+
 router.post("/purchase", async (req, res, next) => {
   const { quantity, tickerSymbol } = req.body;
   try {
@@ -30,7 +41,7 @@ router.post("/purchase", async (req, res, next) => {
         total: total.toFixed(2),
         userId: req.session.passport.user
       });
-      
+
       const newBalance = Number(currentUser.balance - total).toFixed(2);
       currentUser.balance = newBalance;
       await currentUser.save();
