@@ -16,12 +16,13 @@ class Transactions extends Component {
             <h2>Transaction History</h2>
             <div className="ui segment">
               {transactions.map(t => {
-                const { id, tickerSymbol, quantity, price } = t;
+                const { id, tickerSymbol, quantity, price, createdAt } = t;
                 return (
                   <div className="stock-details" key={id}>
                     <div>
-                      Purchased {quantity} shares of {tickerSymbol} @ {price}{" "}
+                      Purchased {quantity} shares of {tickerSymbol.toUpperCase()} @ {price}{" "}
                       per share -- Total: {price * quantity}
+                      <span className="date-box">{createdAt.substring(0, 10)} - {createdAt.substring(11, 19)}</span>
                     </div>
                   </div>
                 );

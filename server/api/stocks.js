@@ -22,29 +22,34 @@ router.post("/purchase", async (req, res, next) => {
       res.sendStatus(500);
       next();
     }
-    const quote = await stocksAPI.purchaseStock(tickerSymbol);
-    if (quote === undefined) {
-      res.status(401).send("Invalid symbol");
+    if (quantity <= 0) {
+      res.status(401).send("Invalid input");
     } else {
-      const { latestPrice } = quote;
-      const total = Number(quantity * latestPrice);
-      const currentUser = await User.findOne({
-        where: { id: req.session.passport.user }
-      });
-      if (total > currentUser.balance) {
-        res.status(401).send("Purchase exceeds balance");
+      const quote = await stocksAPI.purchaseStock(tickerSymbol);
+      if (quote === undefined) {
+        res.status(401).send("Invalid symbol");
       } else {
-        const addStockToPortolio = await Transaction.create({
-          tickerSymbol: tickerSymbol,
-          quantity: quantity,
-          price: latestPrice,
-          userId: req.session.passport.user
+        let { latestPrice } = quote;
+        latestPrice = latestPrice.toFixed(2);
+        const total = Number(quantity * latestPrice);
+        const currentUser = await User.findOne({
+          where: { id: req.session.passport.user }
         });
+        if (total > currentUser.balance) {
+          res.status(401).send("Purchase exceeds balance");
+        } else {
+          const addStockToPortolio = await Transaction.create({
+            tickerSymbol: tickerSymbol.toUpperCase(),
+            quantity: quantity,
+            price: latestPrice,
+            userId: req.session.passport.user
+          });
 
-        const newBalance = Number(currentUser.balance - total).toFixed(2);
-        currentUser.balance = newBalance;
-        await currentUser.save();
-        res.json(quote);
+          const newBalance = Number(currentUser.balance - total);
+          currentUser.balance = newBalance;
+          await currentUser.save();
+          res.json(addStockToPortolio);
+        }
       }
     }
   } catch (error) {

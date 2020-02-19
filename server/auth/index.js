@@ -22,7 +22,6 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
-    console.log(req.body)
     if (!req.body.username || !req.body.email || !req.body.password) {
       res.status(401).send("Fill out all fields");
     }

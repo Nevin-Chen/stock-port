@@ -1,4 +1,5 @@
 import axios from "axios";
+import { me } from './user'
 
 const PURCHASE_STOCK = "PURCHASE_STOCK";
 const LOAD_PORTFOLIO = "LOAD_PORTFOLIO";
@@ -23,8 +24,9 @@ export const purchaseStockThunk = (
       quantity: quantity
     });
     dispatch(purchaseStock(data));
+    dispatch(me());
   } catch (error) {
-    return dispatch(loadPortfolio({ error: error }));
+    console.error(error);
   }
 };
 

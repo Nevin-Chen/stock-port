@@ -13,3 +13,7 @@ a {
 .mid-text {
   margin: 5% 0 10% 0 !important;
 }
+
+.date-box {
+  float: right;
+}

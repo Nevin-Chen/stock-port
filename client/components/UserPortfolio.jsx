@@ -38,13 +38,12 @@ class UserPortfolio extends Component {
       for (let i = 0; i < this.props.portfolio.stocks.length; i++) {
         totalValue += this.props.portfolio.stocks[i].price;
       }
-
       return (
         <div className="ui vertical stripe quote segment">
           <div className="ui equal width stackable internally celled grid">
             <div className="center aligned row three">
               <div className="ten wide column">
-                <h2>Portfolio - ${totalValue}</h2>
+                <h2>Portfolio ( ${totalValue.toFixed(2)} )</h2>
                 <div className="ui segment">
                   <div className="ui vertically divided grid">
                     <h3 className="six wide column">Ticker</h3>
@@ -56,7 +55,7 @@ class UserPortfolio extends Component {
                       return (
                         <Fragment key={stock.id}>
                           <div className="six wide column">
-                            {stock.tickerSymbol.toUpperCase()}
+                            {stock.tickerSymbol}
                           </div>
                           <div className="five wide column">
                             {stock.quantity}
@@ -69,7 +68,7 @@ class UserPortfolio extends Component {
                 </div>
               </div>
               <div className="six wide column">
-                <h2>Current Cash in Account - ${this.props.balance}</h2>
+                <h2>Current Cash in Account ( ${this.props.balance} )</h2>
                 <StockForm
                   state={this.state}
                   handleSubmit={this.handleSubmit}
@@ -87,10 +86,10 @@ class UserPortfolio extends Component {
           <div className="ui equal width stackable internally celled grid">
             <div className="center aligned row three">
               <div className="ten wide column">
-                <h2>Portfolio (total)</h2>
+                <h2>Portfolio</h2>
               </div>
               <div className="six wide column">
-                <h2>Current Cash in Account - ${this.props.balance}</h2>
+                <h2>Current Cash in Account ( ${this.props.balance} )</h2>
                 <StockForm
                   state={this.state}
                   handleSubmit={this.handleSubmit}
