@@ -1,7 +1,7 @@
 import React from "react";
 
 const StockForm = props => {
-  const { state, handleSubmit, handleChange } = props;
+  const { state, handleSubmit, handleChange, purchase } = props;
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="ticker">Ticker Symbol</label>
@@ -22,7 +22,11 @@ const StockForm = props => {
         value={state.quantity}
       />
 
-      <button type="submit" disabled={!state.ticker || !state.quantity}>
+      <button
+        type="submit"
+        onClick={() => purchase(state.ticker, state.quantity)}
+        disabled={!state.ticker || !state.quantity}
+      >
         Buy
       </button>
     </form>

@@ -10,14 +10,14 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.post("/", async (req, res, next) => {
+router.post("/purchase", async (req, res, next) => {
     try {
-      if (!req.body.ticker || !req.body.quantity) {
+      if (!req.body.tickerSymbol || !req.body.quantity) {
         res.sendStatus(500);
         next();
       } else {
-        const transaction = await user.create(req.body);
-        res.json(newCampus);
+        const quote = await stocksAPI.purchaseStock()
+        res.json(quote);
       }
     } catch (error) {
       next(error);

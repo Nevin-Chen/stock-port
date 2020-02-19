@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import StockForm from "./StockForm";
+import { purchaseStockThunk } from "../store/portfolio";
 
 class UserPortfolio extends Component {
   constructor(props) {
@@ -28,17 +27,28 @@ class UserPortfolio extends Component {
   render() {
     return (
       <div>
-        <h2>Portfolio (Total Value)</h2>
+        <h2>Portfolio (total)</h2>
         <hr />
-        <h2>Cash - $(Amount)</h2>
+        <h2>Current Cash in Account - ${this.props.balance}</h2>
         <StockForm
           state={this.state}
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
+          purchase={this.props.purchaseStock}
         />
       </div>
     );
   }
 }
 
-export default UserPortfolio;
+const mapStateToProps = state => ({
+  balance: state.user.balance
+});
+
+const mapDispatchToProps = dispatch => ({
+  purchaseStock: (ticker, quantity) => {
+    dispatch(purchaseStockThunk(ticker, quantity));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPortfolio);

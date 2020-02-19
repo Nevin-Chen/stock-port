@@ -25,7 +25,7 @@ export const auth = (username, email, password, method) => async dispatch => {
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
-  
+
   try {
     dispatch(getUser(res.data));
     history.push("/");
