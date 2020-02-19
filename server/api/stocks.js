@@ -7,7 +7,7 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const portfolioView = await CalculateStock(req.session.passport.user)
+    const portfolioView = await CalculateStock(req.session.passport.user);
     res.json(portfolioView);
   } catch (error) {
     next(error);
@@ -47,9 +47,9 @@ router.post("/purchase", async (req, res, next) => {
           const newBalance = Number(currentUser.balance - total);
           currentUser.balance = newBalance;
           await currentUser.save();
-          
-          await Sleep(500)
-          
+
+          await Sleep(500);
+
           res.json(addStockToPortolio);
         }
       }

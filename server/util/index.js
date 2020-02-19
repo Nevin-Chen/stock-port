@@ -8,21 +8,24 @@ const CalculateStock = async userId => {
     where: { userId: userId }
   });
   for (let i = 0; i < stocks.length; i++) {
-    const { tickerSymbol, quantity, id } = stocks[i];
+    const { tickerSymbol, quantity, id, price } = stocks[i];
     if (!counter[tickerSymbol])
       counter[tickerSymbol] = {
         id: id,
         quantity: 0,
-        currentPrice: 0
+        currentPrice: 0,
+        openPrice: price
       };
     counter[tickerSymbol].quantity += quantity;
   }
   await ComparePrice(counter);
+
   for (tickerSymbol in counter) {
     portfolio.push({
       id: counter[tickerSymbol].id,
       tickerSymbol: tickerSymbol,
       quantity: counter[tickerSymbol].quantity,
+      openPrice: counter[tickerSymbol].openPrice,
       price: counter[tickerSymbol].currentPrice
     });
   }
@@ -32,7 +35,6 @@ const CalculateStock = async userId => {
 const ComparePrice = async counter => {
   for (tickerSymbol in counter) {
     const { latestPrice } = await stocks.purchaseStock(tickerSymbol);
-    counter[tickerSymbol].id = latestPrice;
     counter[tickerSymbol].currentPrice = latestPrice;
     counter[tickerSymbol].total = Number(
       (counter[tickerSymbol].quantity * latestPrice).toFixed(2)
@@ -46,5 +48,6 @@ function Sleep(ms) {
 }
 
 module.exports = {
-  CalculateStock, Sleep
+  CalculateStock,
+  Sleep
 };

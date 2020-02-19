@@ -35,10 +35,12 @@ class UserPortfolio extends Component {
   render() {
     if (this.props.portfolio.stocks.length) {
       let totalValue = 0;
+
       for (let i = 0; i < this.props.portfolio.stocks.length; i++) {
         const { price, quantity } = this.props.portfolio.stocks[i];
         totalValue += price * quantity;
       }
+
       return (
         <div className="ui vertical stripe quote segment">
           <div className="ui equal width stackable internally celled grid">
@@ -53,15 +55,31 @@ class UserPortfolio extends Component {
                   </div>
                   <div className="ui vertically divided grid">
                     {this.props.portfolio.stocks.map(stock => {
+                      let color;
+                      if (stock.price > stock.openPrice) {
+                        color = {
+                          color: "green"
+                        };
+                      } else if (stock.price < stock.openPrice) {
+                        color = {
+                          color: "red"
+                        };
+                      } else {
+                        color = {
+                          color: "grey"
+                        };
+                      }
                       return (
                         <Fragment key={stock.id}>
-                          <div className="six wide column">
+                          <div className="six wide column" style={color}>
                             {stock.tickerSymbol}
                           </div>
-                          <div className="five wide column">
+                          <div className="five wide column" style={color}>
                             {stock.quantity}
                           </div>
-                          <div className="five wide column">${stock.price}</div>
+                          <div className="five wide column" style={color}>
+                            ${stock.price}
+                          </div>
                         </Fragment>
                       );
                     })}
