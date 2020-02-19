@@ -24,7 +24,7 @@ export const purchaseStockThunk = (
     });
     dispatch(purchaseStock(data));
   } catch (error) {
-    console.error(error);
+    return dispatch(loadPortfolio({ error: error }));
   }
 };
 

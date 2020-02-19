@@ -33,7 +33,6 @@ router.post("/purchase", async (req, res, next) => {
       });
       if (total > currentUser.balance) {
         res.status(401).send("Purchase exceeds balance");
-        next();
       } else {
         const addStockToPortolio = await Transaction.create({
           tickerSymbol: tickerSymbol,

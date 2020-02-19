@@ -37,7 +37,7 @@ class UserPortfolio extends Component {
       return (
         <div>
           <h2>Portfolio (total)</h2>
-          {this.props.portfolio.stocks.map(stocks => {
+          {this.props.portfolio.stocks.map(stock => {
             return (
               <div className="stock-details" key={stock.id}>
                 <div className="ticker-symbol">{stock.tickerSymbol}</div>
@@ -76,7 +76,7 @@ class UserPortfolio extends Component {
 
 const mapStateToProps = state => ({
   balance: state.user.balance,
-  portfolio: state.portfolio.portfolio
+  portfolio: state.portfolio
 });
 
 const mapDispatchToProps = dispatch => ({
