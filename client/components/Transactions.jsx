@@ -9,18 +9,25 @@ class Transactions extends Component {
 
   render() {
     const { transactions } = this.props.transactions;
-    return (
-      <div>
-        {transactions.map(t => {
-          const {id, tickerSymbol, quantity, total} = t
-          return (
-            <div className="stock-details" key={id}>
-              <div>Purchased {quantity} shares of {tickerSymbol} @ {total/quantity} per share -- Total: {total}</div>
-            </div>
-          );
-        })}
-      </div>
-    );
+    if (transactions.length) {
+      return (
+        <div>
+          {transactions.map(t => {
+            const { id, tickerSymbol, quantity, total } = t;
+            return (
+              <div className="stock-details" key={id}>
+                <div>
+                  Purchased {quantity} shares of {tickerSymbol} @{" "}
+                  {total / quantity} per share -- Total: {total}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    } else {
+      return <div>You have not made any transactions</div>;
+    }
   }
 }
 

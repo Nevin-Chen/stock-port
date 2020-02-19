@@ -3,9 +3,13 @@ h1 {
 }
 
 a {
-    color: rgb(145, 188, 228)
+  color: rgb(145, 188, 228);
 }
 
 .home-page-container {
   margin-top: 150px;
+}
+
+.mid-text {
+  margin: 5% 0 10% 0 !important;
 }

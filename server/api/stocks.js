@@ -34,18 +34,19 @@ router.post("/purchase", async (req, res, next) => {
       if (total > currentUser.balance) {
         res.status(401).send("Purchase exceeds balance");
         next();
-      }
-      const addStockToPortolio = await Transaction.create({
-        tickerSymbol: tickerSymbol,
-        quantity: quantity,
-        total: total.toFixed(2),
-        userId: req.session.passport.user
-      });
+      } else {
+        const addStockToPortolio = await Transaction.create({
+          tickerSymbol: tickerSymbol,
+          quantity: quantity,
+          total: total.toFixed(2),
+          userId: req.session.passport.user
+        });
 
-      const newBalance = Number(currentUser.balance - total).toFixed(2);
-      currentUser.balance = newBalance;
-      await currentUser.save();
-      res.json(quote);
+        const newBalance = Number(currentUser.balance - total).toFixed(2);
+        currentUser.balance = newBalance;
+        await currentUser.save();
+        res.json(quote);
+      }
     }
   } catch (error) {
     next(error);
