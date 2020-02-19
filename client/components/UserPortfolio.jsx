@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import StockForm from "./StockForm";
 import { purchaseStockThunk, loadPortfolioThunk } from "../store/portfolio";
@@ -33,25 +33,39 @@ class UserPortfolio extends Component {
   }
 
   render() {
-    if (this.props.portfolio) {
+    if (this.props.portfolio.stocks.length) {
+      let totalValue = 0;
+      for (let i = 0; i < this.props.portfolio.stocks.length; i++) {
+        totalValue += this.props.portfolio.stocks[i].price;
+      }
+
       return (
         <div className="ui vertical stripe quote segment">
           <div className="ui equal width stackable internally celled grid">
             <div className="center aligned row three">
               <div className="ten wide column">
-                <h2>Portfolio (total)</h2>
+                <h2>Portfolio - ${totalValue}</h2>
                 <div className="ui segment">
-                  {this.props.portfolio.stocks.map(stock => {
-                    return (
-                      <div className="stock-details" key={stock.id}>
-                        <div className="ticker-symbol">
-                          {stock.tickerSymbol}
-                        </div>
-                        <div className="quantity">{stock.quantity}</div>
-                        <div className="price">{stock.price}</div>
-                      </div>
-                    );
-                  })}
+                  <div className="ui vertically divided grid">
+                    <h3 className="six wide column">Ticker</h3>
+                    <h3 className="five wide column">Shares</h3>
+                    <h3 className="five wide column">Current Price</h3>
+                  </div>
+                  <div className="ui vertically divided grid">
+                    {this.props.portfolio.stocks.map(stock => {
+                      return (
+                        <Fragment key={stock.id}>
+                          <div className="six wide column">
+                            {stock.tickerSymbol.toUpperCase()}
+                          </div>
+                          <div className="five wide column">
+                            {stock.quantity}
+                          </div>
+                          <div className="five wide column">${stock.price}</div>
+                        </Fragment>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
               <div className="six wide column">
