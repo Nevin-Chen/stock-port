@@ -37,7 +37,7 @@ router.post("/purchase", async (req, res, next) => {
         const addStockToPortolio = await Transaction.create({
           tickerSymbol: tickerSymbol,
           quantity: quantity,
-          total: total.toFixed(2),
+          price: latestPrice,
           userId: req.session.passport.user
         });
 

@@ -11,22 +11,32 @@ class Transactions extends Component {
     const { transactions } = this.props.transactions;
     if (transactions.length) {
       return (
-        <div>
-          {transactions.map(t => {
-            const { id, tickerSymbol, quantity, total } = t;
-            return (
-              <div className="stock-details" key={id}>
-                <div>
-                  Purchased {quantity} shares of {tickerSymbol} @{" "}
-                  {total / quantity} per share -- Total: {total}
-                </div>
-              </div>
-            );
-          })}
+        <div className="ui vertical stripe segment">
+          <div className="ui text container">
+            <h2>Transaction History</h2>
+            <div className="ui segment">
+              {transactions.map(t => {
+                const { id, tickerSymbol, quantity, price } = t;
+                return (
+                  <div className="stock-details" key={id}>
+                    <div>
+                      Purchased {quantity} shares of {tickerSymbol} @ {price}{" "}
+                      per share -- Total: {price * quantity}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       );
     } else {
-      return <div>You have not made any transactions</div>;
+      return (
+        <div className="ui text container">
+          <h2>Transaction History</h2>
+          <h4>You have not made any transactions</h4>
+        </div>
+      );
     }
   }
 }

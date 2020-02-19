@@ -6,34 +6,57 @@ import { auth } from "../store";
 const LoginForm = props => {
   const { formName, displayName, handleSubmit, error } = props;
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={formName}>
-        {displayName === "Sign Up" && (
-          <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" required/>
+    <div className="ui three column middle aligned center aligned grid">
+      <div className="six wide column">
+        <form onSubmit={handleSubmit} name={formName} className="ui large form">
+          <div className="ui stacked segment">
+            {displayName === "Sign Up" && (
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="user icon"></i>
+                  <input
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    required
+                  />
+                </div>
+              </div>
+            )}
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="address card icon"></i>
+                <input
+                  name="email"
+                  type="text"
+                  placeholder="E-mail address"
+                  required
+                />
+              </div>
+            </div>
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="lock icon"></i>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="ui fluid large teal submit button"
+              >
+                {displayName}
+              </button>
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
           </div>
-        )}
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" required/>
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" required/>
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      {/* <a href="/auth/google">{displayName} with Google</a> */}
+        </form>
+      </div>
     </div>
   );
 };

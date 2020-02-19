@@ -35,39 +35,57 @@ class UserPortfolio extends Component {
   render() {
     if (this.props.portfolio) {
       return (
-        <div>
-          <h2>Portfolio (total)</h2>
-          {this.props.portfolio.stocks.map(stock => {
-            return (
-              <div className="stock-details" key={stock.id}>
-                <div className="ticker-symbol">{stock.tickerSymbol}</div>
-                <div className="quantity">{stock.quantity}</div>
-                <div className="total">{stock.total}</div>
+        <div className="ui vertical stripe quote segment">
+          <div className="ui equal width stackable internally celled grid">
+            <div className="center aligned row three">
+              <div className="ten wide column">
+                <h2>Portfolio (total)</h2>
+                <div className="ui segment">
+                  {this.props.portfolio.stocks.map(stock => {
+                    return (
+                      <div className="stock-details" key={stock.id}>
+                        <div className="ticker-symbol">
+                          {stock.tickerSymbol}
+                        </div>
+                        <div className="quantity">{stock.quantity}</div>
+                        <div className="price">{stock.price}</div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            );
-          })}
-          <hr />
-          <h2>Current Cash in Account - ${this.props.balance}</h2>
-          <StockForm
-            state={this.state}
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            purchase={this.props.purchaseStock}
-          />
+              <div className="six wide column">
+                <h2>Current Cash in Account - ${this.props.balance}</h2>
+                <StockForm
+                  state={this.state}
+                  handleSubmit={this.handleSubmit}
+                  handleChange={this.handleChange}
+                  purchase={this.props.purchaseStock}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       );
     } else {
       return (
-        <div>
-          <h2>Portfolio (total)</h2>
-          <hr />
-          <h2>Current Cash in Account - ${this.props.balance}</h2>
-          <StockForm
-            state={this.state}
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            purchase={this.props.purchaseStock}
-          />
+        <div className="ui vertical stripe quote segment">
+          <div className="ui equal width stackable internally celled grid">
+            <div className="center aligned row three">
+              <div className="ten wide column">
+                <h2>Portfolio (total)</h2>
+              </div>
+              <div className="six wide column">
+                <h2>Current Cash in Account - ${this.props.balance}</h2>
+                <StockForm
+                  state={this.state}
+                  handleSubmit={this.handleSubmit}
+                  handleChange={this.handleChange}
+                  purchase={this.props.purchaseStock}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       );
     }
