@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import StockForm from "./StockForm";
-import { purchaseStockThunk } from "../store/portfolio";
+import { purchaseStockThunk, loadPortfolioThunk } from "../store/portfolio";
 
 class UserPortfolio extends Component {
   constructor(props) {
@@ -12,6 +12,10 @@ class UserPortfolio extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.loadPortfolio();
   }
 
   handleChange(event) {
@@ -29,27 +33,56 @@ class UserPortfolio extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h2>Portfolio (total)</h2>
-        <hr />
-        <h2>Current Cash in Account - ${this.props.balance}</h2>
-        <StockForm
-          state={this.state}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          purchase={this.props.purchaseStock}
-        />
-      </div>
-    );
+    if (this.props.portfolio) {
+      return (
+        <div>
+          <h2>Portfolio (total)</h2>
+          {this.props.portfolio.stocks.map(stocks => {
+            return (
+              <div className="stock-details" key={stock.id}>
+                <div className="ticker-symbol">{stock.tickerSymbol}</div>
+                <div className="quantity">{stock.quantity}</div>
+                <div className="total">{stock.total}</div>
+              </div>
+            );
+          })}
+          <hr />
+          <h2>Current Cash in Account - ${this.props.balance}</h2>
+          <StockForm
+            state={this.state}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            purchase={this.props.purchaseStock}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>Portfolio (total)</h2>
+          <hr />
+          <h2>Current Cash in Account - ${this.props.balance}</h2>
+          <StockForm
+            state={this.state}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            purchase={this.props.purchaseStock}
+          />
+        </div>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => ({
-  balance: state.user.balance
+  balance: state.user.balance,
+  portfolio: state.portfolio.portfolio
 });
 
 const mapDispatchToProps = dispatch => ({
+  loadPortfolio: () => {
+    dispatch(loadPortfolioThunk());
+  },
   purchaseStock: (ticker, quantity) => {
     dispatch(purchaseStockThunk(ticker, quantity));
   }

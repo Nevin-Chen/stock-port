@@ -26,7 +26,6 @@ const StockForm = props => {
         type="submit"
         onClick={() => {
           purchase(state.ticker, state.quantity)
-          console.log(state)
         }}
         disabled={!state.ticker || !state.quantity}
       >

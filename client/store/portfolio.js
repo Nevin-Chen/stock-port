@@ -13,34 +13,32 @@ const loadPortfolio = portfolio => ({
   portfolio
 });
 
-export const purchaseStockThunk = (tickerSymbol, quantity) => {
-  return async dispatch => {
-    try {
-      const { data } = await axios.post("/api/stocks/purchase", {
-        tickerSymbol: tickerSymbol,
-        quantity: quantity
-      });
-      dispatch(purchaseStock(data));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const purchaseStockThunk = (
+  tickerSymbol,
+  quantity
+) => async dispatch => {
+  try {
+    const { data } = await axios.post("/api/stocks/purchase", {
+      tickerSymbol: tickerSymbol,
+      quantity: quantity
+    });
+    dispatch(purchaseStock(data));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const loadPortfolioThunk = () => {
-  return async dispatch => {
-    try {
-      const { data } = await axios.get("/api/stocks/portfolio");
-      dispatch(loadPortfolio(data));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const loadPortfolioThunk = () => async dispatch => {
+  try {
+    const { data } = await axios.get("/api/stocks");
+    dispatch(loadPortfolio(data));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const initialState = {
-  stocks: [],
-  portfolio: []
+  stocks: []
 };
 
 const portfolioReducer = (state = initialState, action) => {
@@ -48,7 +46,7 @@ const portfolioReducer = (state = initialState, action) => {
     case PURCHASE_STOCK:
       return { ...state, stocks: [...state.stocks, action.stock] };
     case LOAD_PORTFOLIO:
-      return { ...state, portfolio: action.portfolio };
+      return { ...state, stocks: action.portfolio };
     default:
       return state;
   }

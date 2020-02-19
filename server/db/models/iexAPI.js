@@ -4,7 +4,8 @@ require("dotenv").config();
 class StocksAPI {
   async purchaseStock(sym) {
     try {
-      const quoteData = await iex.quote("XOM");
+      console.log(sym)
+      const quoteData = await iex.quote(sym);
       return quoteData;
     } catch (error) {
       console.error(error);
