@@ -8,7 +8,7 @@
     "start-server": "nodemon server -e html,js,css",
     "build-watch": "webpack -w",
     "build": "webpack",
-    "start": "node server"
+    "start": "NODE_ENV='development' npm run build-watch & NODE_ENV='development' npm run start-server"
   },
   "keywords": [],
   "author": "",
