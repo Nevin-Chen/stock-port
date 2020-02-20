@@ -32,7 +32,7 @@ router.post("/purchase", async (req, res, next) => {
       } else {
         let { latestPrice } = data;
         latestPrice = latestPrice.toFixed(2);
-        const total = Number(quantity * latestPrice);
+        const total = Number((quantity * latestPrice).toFixed(2));
         const currentUser = await User.findOne({
           where: { id: req.session.passport.user }
         });
