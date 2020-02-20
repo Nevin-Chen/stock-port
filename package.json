@@ -4,11 +4,11 @@
   "description": "A Fullstack Stock Portfolio application",
   "main": "index.js",
   "scripts": {
-    "start-dev": "npm run build-watch & npm run start-server",
-    "start-server": "nodemon server -e html,js,css",
-    "build-watch": "webpack -w",
-    "build": "webpack",
-    "start": "NODE_ENV='development' npm run build-watch & NODE_ENV='development' npm run start-server"
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "start": "node server",
   },
   "keywords": [],
   "author": "",
