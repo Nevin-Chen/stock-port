@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - node
+dist: trusty
+sudo: false
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+install:
+script:
+  - npm run start-dev
+
+before_deploy:
+  - rm -rf node_modules
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: stock-portapp
+  api_key:
+    secure:
