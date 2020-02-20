@@ -33,16 +33,14 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sequelize": "^5.21.4",
-    "morgan": "^1.9.1"
-  },
-  "devDependencies": {
+    "morgan": "^1.9.1",
+    "dotenv": "^8.2.0",
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-stage-2": "^7.8.3",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
-    "dotenv": "^8.2.0",
     "redux-devtools-extension": "^2.13.8",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
