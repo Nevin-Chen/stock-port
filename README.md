@@ -27,9 +27,9 @@ The color of a user's stock portfolio changes according to the stock's current p
 - Displays Green when current price of stock is lower than the user's purchasing price.
 - Displays Green when current price of stock is equal to the user's purchasing price.
 
-![Portfolio-View](https://res.cloudinary.com/dkdkftvsq/image/upload/v1582851970/Screen_Shot_2020-02-27_at_8.05.04_PM_fmpcym.png)
+![Portfolio-View](https://res.cloudinary.com/dkdkftvsq/image/upload/v1582856020/Portfolio-View_eaidxo.png)
 
-![Transaction-View](https://res.cloudinary.com/dkdkftvsq/image/upload/v1582851970/Screen_Shot_2020-02-27_at_8.05.11_PM_foimln.png)
+![Transaction-View](https://res.cloudinary.com/dkdkftvsq/image/upload/v1582855859/Transaction-View_da5l49.png)
 
 ### Libraries and Technologies
 
