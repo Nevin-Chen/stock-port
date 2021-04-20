@@ -1,9 +1,23 @@
-h1 {
-  font-family: "Lobster", cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Helvetica";
 }
 
 a {
-  color: rgb(145, 188, 228);
+  color: #364547;
+}
+
+a:hover {
+  color: #5f8286;
+}
+
+.logo {
+  margin-left: 0.25em;
 }
 
 .home-page-container {
@@ -16,4 +30,10 @@ a {
 
 .date-box {
   float: right;
+}
+
+body {
+  background: url('/images/stock-photo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
