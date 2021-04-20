@@ -15,15 +15,22 @@ class Transactions extends Component {
           <div className="ui text container">
             <h2>Transaction History</h2>
             <div className="ui segment">
-              {transactions.map(t => {
+              {transactions.map((t) => {
                 const { id, tickerSymbol, quantity, price, createdAt } = t;
                 return (
                   <div className="stock-details" key={id}>
-                    <div>
-                      Purchased {quantity} shares of {tickerSymbol.toUpperCase()} @ {price}{" "}
-                      per share -- Total: {price * quantity}
-                      <span className="date-box">{createdAt.substring(0, 10)} - {createdAt.substring(11, 19)}</span>
-                    </div>
+                    <li className="transactions-list">
+                      <ul>
+                        Purchased {quantity} shares of{" "}
+                        {tickerSymbol.toUpperCase()} @ {price} per share
+                      </ul>
+                      <ul>Total: {(price * quantity).toFixed(2)}</ul>
+                      <span className="date-box">
+                        Date: {createdAt.substring(0, 10)} <br></br> Time of
+                        purchase: {createdAt.substring(11, 19)}
+                      </span>
+                    </li>
+                    <hr></hr>
                   </div>
                 );
               })}
@@ -42,14 +49,14 @@ class Transactions extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  transactions: state.transactions
+const mapStateToProps = (state) => ({
+  transactions: state.transactions,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   loadTransactions: () => {
     dispatch(loadTransactionsThunk());
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transactions);

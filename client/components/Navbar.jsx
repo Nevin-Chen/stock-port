@@ -16,21 +16,21 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         {isLoggedIn ? (
           <div className="right item">
             <Link to="/transactions">
-              <span className="ui red inverted button">Transactions</span>
+              <span className="ui blue inverted button">Transactions</span>
             </Link>
             <Link to="#" onClick={handleClick}>
-              <span className="ui red inverted button">Logout</span>
+              <span className="ui blue inverted button">Logout</span>
             </Link>
           </div>
         ) : (
           <div className="right item">
             <Link to="/login">
-              <span className="ui red inverted button" role="button">
+              <span className="ui blue inverted button" role="button">
                 Login
               </span>
             </Link>
             <Link to="/signup">
-              <span className="ui red inverted button" role="button">
+              <span className="ui blue inverted button" role="button">
                 Sign Up
               </span>
             </Link>

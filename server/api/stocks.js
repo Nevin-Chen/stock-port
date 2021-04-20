@@ -8,7 +8,6 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   try {
     const portfolioView = await CalculateStock(req.session.passport.user);
-    console.log(portfolioView);
     res.json(portfolioView);
   } catch (error) {
     next(error);

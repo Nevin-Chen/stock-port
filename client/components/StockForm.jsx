@@ -3,10 +3,10 @@ import React from "react";
 const StockForm = props => {
   const { state, handleSubmit, handleChange, purchase } = props;
   return (
-    <div className="six wide column">
+    <div className="eight wide column">
       <form onSubmit={handleSubmit} className="ui large form">
         <div className="field">
-          <label htmlFor="ticker">Ticker Symbol</label>
+          <label className="label-text" htmlFor="ticker">Ticker Symbol</label>
           <input
             type="text"
             name="ticker"
@@ -17,7 +17,7 @@ const StockForm = props => {
         </div>
 
         <div className="field">
-          <label htmlFor="quantity">Quantity</label>
+          <label className="label-text" htmlFor="quantity">Quantity</label>
           <input
             type="number"
             min="0"

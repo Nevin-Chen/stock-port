@@ -8,6 +8,21 @@ p {
   font-family: "Helvetica";
 }
 
+.text-color>h1,
+h2 {
+  color: #ccffbd;
+}
+
+.text-color {
+  margin: 0 5em;
+  height: 100vh;
+}
+
+.label-text,
+h4 {
+  color: #e84545 !important;
+}
+
 a {
   color: #364547;
 }
@@ -36,4 +51,15 @@ body {
   background: url('/images/stock-photo.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.transactions-list {
+  list-style-type: none;
+}
+
+hr {
+  border: dotted #EAF6F6 6px;
+  border-bottom: none;
+  width: 8%;
+  margin: 4em auto;
 }

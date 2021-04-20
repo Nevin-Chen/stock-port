@@ -8,7 +8,7 @@ class UserPortfolio extends Component {
     super(props);
     this.state = {
       ticker: "",
-      quantity: ""
+      quantity: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +20,7 @@ class UserPortfolio extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -28,7 +28,7 @@ class UserPortfolio extends Component {
     event.preventDefault();
     this.setState({
       ticker: "",
-      quantity: ""
+      quantity: "",
     });
   }
 
@@ -45,8 +45,10 @@ class UserPortfolio extends Component {
         <div className="ui vertical stripe quote segment">
           <div className="ui equal width stackable internally celled grid">
             <div className="center aligned row three">
-              <div className="ten wide column">
-                <h2>Portfolio ( ${totalValue.toFixed(2)} )</h2>
+              <div className="eight wide column">
+                <h2>
+                  Portfolio <br></br>( ${totalValue.toFixed(2)} )
+                </h2>
                 <div className="ui segment">
                   <div className="ui vertically divided grid">
                     <h3 className="six wide column">Ticker</h3>
@@ -54,19 +56,19 @@ class UserPortfolio extends Component {
                     <h3 className="five wide column">Current Price</h3>
                   </div>
                   <div className="ui vertically divided grid">
-                    {this.props.portfolio.stocks.map(stock => {
+                    {this.props.portfolio.stocks.map((stock) => {
                       let color;
                       if (stock.price > stock.openPrice) {
                         color = {
-                          color: "green"
+                          color: "green",
                         };
                       } else if (stock.price < stock.openPrice) {
                         color = {
-                          color: "red"
+                          color: "red",
                         };
                       } else {
                         color = {
-                          color: "grey"
+                          color: "grey",
                         };
                       }
                       return (
@@ -86,8 +88,8 @@ class UserPortfolio extends Component {
                   </div>
                 </div>
               </div>
-              <div className="six wide column">
-                <h2>Current Cash in Account ( ${this.props.balance} )</h2>
+              <div className="eight wide column">
+                <h2>Current Cash in Account <br></br> ( ${this.props.balance} )</h2>
                 <StockForm
                   state={this.state}
                   handleSubmit={this.handleSubmit}
@@ -104,11 +106,13 @@ class UserPortfolio extends Component {
         <div className="ui vertical stripe quote segment">
           <div className="ui equal width stackable internally celled grid">
             <div className="center aligned row three">
-              <div className="ten wide column">
+              <div className="eight wide column">
                 <h2>Portfolio</h2>
               </div>
-              <div className="six wide column">
-                <h2>Current Cash in Account ( ${this.props.balance} )</h2>
+              <div className="eight wide column">
+                <h2>
+                  Current Cash in Account <br></br> ( ${this.props.balance} )
+                </h2>
                 <StockForm
                   state={this.state}
                   handleSubmit={this.handleSubmit}
@@ -124,18 +128,18 @@ class UserPortfolio extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   balance: state.user.balance,
-  portfolio: state.portfolio
+  portfolio: state.portfolio,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   loadPortfolio: () => {
     dispatch(loadPortfolioThunk());
   },
   purchaseStock: (ticker, quantity) => {
     dispatch(purchaseStockThunk(ticker, quantity));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPortfolio);
