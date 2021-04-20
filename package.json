@@ -2,9 +2,6 @@
   "name": "stock-port",
   "version": "1.0.0",
   "description": "A Fullstack Stock Portfolio application",
-  "engines": {
-    "node": ">= 7.0.0"
-  },
   "main": "index.js",
   "scripts": {
     "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
@@ -12,7 +9,7 @@
     "build-client": "webpack",
     "build-client-watch": "webpack -w",
     "start": "node server",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "webpack"
   },
   "keywords": [],
   "author": "",
