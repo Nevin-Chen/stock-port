@@ -34,7 +34,8 @@ const CalculateStock = async userId => {
 
 const ComparePrice = async counter => {
   for (tickerSymbol in counter) {
-    const { latestPrice } = await stocks.purchaseStock(tickerSymbol);
+    const { data } = await stocks.purchaseStock(tickerSymbol);
+    const { latestPrice } = data;
     counter[tickerSymbol].currentPrice = latestPrice;
     counter[tickerSymbol].total = Number(
       (counter[tickerSymbol].quantity * latestPrice).toFixed(2)

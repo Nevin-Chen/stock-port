@@ -9,7 +9,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <nav className="ui borderless menu">
         <div className="left item">
           <Link to="/">
-            <h1>Stock-Port</h1>
+            <h1>Stock-Port<span className="logo"><i className="fas fa-chart-line"></i></span></h1>
           </Link>
         </div>
         <div className="ui container">

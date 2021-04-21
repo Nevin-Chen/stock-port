@@ -7,7 +7,7 @@ const LoginForm = props => {
   const { formName, displayName, handleSubmit, error } = props;
   return (
     <div className="ui three column middle aligned center aligned grid">
-      <div className="six wide column">
+      <div className="eight wide column">
         <form onSubmit={handleSubmit} name={formName} className="ui large form">
           <div className="ui stacked segment">
             {displayName === "Sign Up" && (

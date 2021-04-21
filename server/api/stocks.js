@@ -25,12 +25,13 @@ router.post("/purchase", async (req, res, next) => {
       res.status(401).send("Invalid input");
     } else {
       const quote = await stocks.purchaseStock(tickerSymbol);
-      if (quote === undefined) {
+      const { data } = quote;
+      if (data === undefined) {
         res.status(401).send("Invalid symbol");
       } else {
-        let { latestPrice } = quote;
+        let { latestPrice } = data;
         latestPrice = latestPrice.toFixed(2);
-        const total = Number(quantity * latestPrice);
+        const total = Number((quantity * latestPrice).toFixed(2));
         const currentUser = await User.findOne({
           where: { id: req.session.passport.user }
         });

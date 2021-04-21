@@ -4,33 +4,67 @@
   "description": "A Fullstack Stock Portfolio application",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "npm run build-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,css",
     "build-watch": "webpack -w",
     "build": "webpack"
+=======
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "start": "node server",
+    "heroku-postbuild": "webpack"
+>>>>>>> deploy
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "connect-session-sequelize": "^6.1.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "history": "^4.10.1",
+=======
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-stage-2": "^7.8.3",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "connect-session-sequelize": "^7.1.1",
+    "core-js": "^2.6.12",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+>>>>>>> deploy
     "iexcloud_api_wrapper": "^1.1.5",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
+<<<<<<< HEAD
     "pg": "^7.18.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+=======
+    "path": "^0.12.7",
+    "pg": "^8.6.0",
+    "pg-native": "^3.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+>>>>>>> deploy
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+<<<<<<< HEAD
     "sequelize": "^5.22.4"
   },
   "devDependencies": {
@@ -46,5 +80,10 @@
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.10.3"
+=======
+    "sequelize": "^6.6.2",
+    "webpack": "^5.34.0",
+    "webpack-cli": "^4.6.0"
+>>>>>>> deploy
   }
 }
